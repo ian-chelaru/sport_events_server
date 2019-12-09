@@ -20,6 +20,10 @@ public class EventService
 
     public Event insertEvent(Event event)
     {
+        if (eventRepository.existsById(event.getId()))
+        {
+            event.setId(0);
+        }
         return eventRepository.save(event);
     }
 
@@ -30,7 +34,11 @@ public class EventService
 
     public void updateEvent(Event event)
     {
-        eventRepository.save(event);
+        Integer eventId = event.getId();
+        if (eventId != null && eventRepository.existsById(eventId))
+        {
+            eventRepository.save(event);
+        }
     }
 
     public void deleteEvent(Event event)

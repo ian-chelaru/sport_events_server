@@ -32,7 +32,7 @@ public class EventController
         return eventService.getAllEvents();
     }
 
-    @PostMapping
+    @PutMapping
     public void update(@RequestBody Event event)
     {
         eventService.updateEvent(event);
